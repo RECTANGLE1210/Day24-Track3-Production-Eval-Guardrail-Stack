@@ -20,6 +20,7 @@ rails:
       - check jailbreak
       - check off topic
       - check pii request
+      - check pii request in english
   output:
     flows:
       - check sensitive output
