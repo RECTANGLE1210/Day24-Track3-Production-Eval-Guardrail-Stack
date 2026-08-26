@@ -1,6 +1,6 @@
 # Failure Cluster Analysis — Phase A
 
-**Sinh viên:** [Họ Tên]  
+**Sinh viên:** Nguyễn Công Hùng - 2A202601071<br>
 **Ngày:** 26/08/2026
 
 ---
@@ -21,16 +21,16 @@
 
 | Rank | ID | Distribution | Question | avg_score | worst_metric |
 |---:|---:|---|---|---:|---|
-| 1 | 39 | multi_hop | So sÃ¡nh yÃªu cáº§u máº­t kháº©u giá»¯a policy v1.0 vÃ  v2.0 vá» Ä‘á»™ dÃ i tá»‘i thiá»ƒu, thá»i háº¡n Ä‘á»•i vÃ  MFA. | 0.0000 | faithfulness |
-| 2 | 33 | multi_hop | NhÃ¢n viÃªn Manager cÃ³ thÃ¢m niÃªn 12 nÄƒm: tá»•ng phá»¥ cáº¥p hÃ ng thÃ¡ng vÃ  sá»‘ ngÃ y phÃ©p nÄƒm theo v2024 lÃ  bao nhiÃªu? | 0.3750 | faithfulness |
-| 3 | 7 | factual | Nghá»‰ phÃ©p khÃ´ng lÆ°Æ¡ng 20 ngÃ y cáº§n ai phÃª duyá»‡t? | 0.4041 | faithfulness |
-| 4 | 43 | adversarial | Máº­t kháº©u pháº£i cÃ³ tá»‘i thiá»ƒu bao nhiÃªu kÃ½ tá»±? | 0.4167 | faithfulness |
-| 5 | 22 | multi_hop | Náº¿u cáº§n mua má»™t chiáº¿c laptop 30 triá»‡u cho nhÃ¢n viÃªn má»›i, ai phÃª duyá»‡t vÃ  cáº§n gÃ¬ tá»« phÃ²ng CNTT? | 0.4167 | faithfulness |
-| 6 | 42 | adversarial | ThÃ¢m niÃªn bao nhiÃªu nÄƒm thÃ¬ Ä‘Æ°á»£c cá»™ng thÃªm ngÃ y phÃ©p? | 0.4167 | faithfulness |
-| 7 | 48 | adversarial | NhÃ¢n viÃªn thá»­ viá»‡c cÃ³ Ä‘Æ°á»£c hÆ°á»Ÿng báº£o hiá»ƒm sá»©c khá»e PVI khÃ´ng? | 0.4167 | faithfulness |
-| 8 | 50 | adversarial | NhÃ¢n viÃªn Manager cÃ³ thá»ƒ dÃ¹ng VPN cÃ¡ nhÃ¢n (nhÆ° NordVPN) khi WFH Ä‘á»ƒ tÄƒng báº£o máº­t thÃªm khÃ´ng? | 0.4167 | faithfulness |
-| 9 | 44 | adversarial | Bao lÃ¢u pháº£i Ä‘á»•i máº­t kháº©u má»™t láº§n? | 0.4583 | faithfulness |
-| 10 | 9 | factual | Nam nhÃ¢n viÃªn Ä‘Æ°á»£c nghá»‰ bao nhiÃªu ngÃ y khi vá»£ sinh con? | 0.5000 | faithfulness |
+| 1 | 39 | multi_hop | So sánh yêu cầu mật khẩu giữa policy v1.0 và v2.0 về độ dài tối thiểu, thời hạn đổi và MFA. | 0.0000 | faithfulness |
+| 2 | 33 | multi_hop | Nhân viên Manager có thâm niên 12 năm: tổng phụ cấp hàng tháng và số ngày phép năm theo v2024 là bao nhiêu? | 0.3750 | faithfulness |
+| 3 | 7 | factual | Nghỉ phép không lương 20 ngày cần ai phê duyệt? | 0.4041 | faithfulness |
+| 4 | 43 | adversarial | Mật khẩu phải có tối thiểu bao nhiêu ký tự? | 0.4167 | faithfulness |
+| 5 | 22 | multi_hop | Nếu cần mua một chiếc laptop 30 triệu cho nhân viên mới, ai phê duyệt và cần gì từ phòng CNTT? | 0.4167 | faithfulness |
+| 6 | 42 | adversarial | Thâm niên bao nhiêu năm thì được cộng thêm ngày phép? | 0.4167 | faithfulness |
+| 7 | 48 | adversarial | Nhân viên thử việc có được hưởng bảo hiểm sức khỏe PVI không? | 0.4167 | faithfulness |
+| 8 | 50 | adversarial | Nhân viên Manager có thể dùng VPN cá nhân (như NordVPN) khi WFH để tăng bảo mật thêm không? | 0.4167 | faithfulness |
+| 9 | 44 | adversarial | Bao lâu phải đổi mật khẩu một lần? | 0.4583 | faithfulness |
+| 10 | 9 | factual | Nam nhân viên được nghỉ bao nhiêu ngày khi vợ sinh con? | 0.5000 | faithfulness |
 
 ---
 

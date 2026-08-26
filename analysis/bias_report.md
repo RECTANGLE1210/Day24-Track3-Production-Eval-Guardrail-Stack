@@ -1,6 +1,6 @@
 # LLM Judge Bias Report — Phase B
 
-**Sinh viên:** [Họ Tên]  
+**Sinh viên:** Nguyễn Công Hùng - 2A202601071<br>
 **Ngày:** 26/08/2026  
 **Judge model:** openai/gpt-4o-mini
 

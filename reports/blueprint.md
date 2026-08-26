@@ -1,6 +1,6 @@
 # CI/CD Blueprint: RAG Eval + Guardrail Stack
 
-**Sinh viên:** Chưa cung cấp<br>
+**Sinh viên:** Nguyễn Công Hùng - 2A202601071<br>
 **Ngày:** 26/08/2026
 
 ---
