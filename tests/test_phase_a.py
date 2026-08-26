@@ -98,6 +98,28 @@ def test_cluster_analysis_metrics(dummy_results):
         assert set(clusters["matrix"].keys()) == expected_metrics
 
 
+def test_cluster_analysis_uses_mean_score_for_distribution():
+    results = [
+        RagasResult(
+            question_id=i, distribution="factual", question=f"F{i}",
+            answer="A", contexts=[], ground_truth="GT",
+            faithfulness=0.9, answer_relevancy=0.9,
+            context_precision=0.9, context_recall=0.9,
+        )
+        for i in range(1, 4)
+    ]
+    results.append(RagasResult(
+        question_id=4, distribution="adversarial", question="A4",
+        answer="A", contexts=[], ground_truth="GT",
+        faithfulness=0.1, answer_relevancy=0.1,
+        context_precision=0.1, context_recall=0.1,
+    ))
+
+    clusters = cluster_analysis(results)
+
+    assert clusters["dominant_failure_distribution"] == "adversarial"
+
+
 def test_cluster_analysis_has_insight(dummy_results):
     clusters = cluster_analysis(dummy_results)
     assert "insight" in clusters and len(clusters["insight"]) > 0, \
