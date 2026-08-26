@@ -8,7 +8,7 @@ import sys
 from dataclasses import dataclass, field
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import OPENAI_API_KEY, JUDGE_MODEL, HUMAN_LABELS_PATH
+from config import get_llm_client, JUDGE_MODEL, HUMAN_LABELS_PATH
 
 
 @dataclass
@@ -55,8 +55,7 @@ def pairwise_judge(question: str, answer_a: str, answer_b: str) -> dict:
     # {{"winner": "A" hoặc "B" hoặc "tie", "reasoning": "giải thích ngắn gọn", "scores": {{"A": 0.0-1.0, "B": 0.0-1.0}}}}
     # '''
     #
-    # from openai import OpenAI
-    # client = OpenAI()
+    # client = get_llm_client()
     # resp = client.chat.completions.create(
     #     model=JUDGE_MODEL,
     #     messages=[

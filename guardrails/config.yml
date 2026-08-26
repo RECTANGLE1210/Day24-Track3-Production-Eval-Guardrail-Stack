@@ -1,7 +1,10 @@
 models:
   - type: main
     engine: openai
-    model: gpt-4o-mini
+    model: openai/gpt-4o-mini
+    api_key_env_var: OPENROUTER_API_KEY
+    parameters:
+      base_url: https://openrouter.ai/api/v1
 
 instructions:
   - type: general

@@ -7,7 +7,7 @@ Chạy TRƯỚC khi bắt đầu Phase A:
 Yêu cầu:
     1. Đã copy src/ từ Day 18 (m1-m5, pipeline.py) vào thư mục này
     2. docker compose up -d  (Qdrant đang chạy trên port 6333)
-    3. .env có OPENAI_API_KEY
+    3. .env có OPENROUTER_API_KEY
 """
 from __future__ import annotations
 
@@ -75,20 +75,19 @@ def build_pipeline():
 
 
 def run_query(q: str, search, reranker, top_k: int) -> tuple[str, list[str]]:
-    from config import OPENAI_API_KEY
+    from config import LLM_MODEL, get_llm_client
 
     results = search.search(q)
     docs    = [{"text": r.text, "score": r.score, "metadata": r.metadata} for r in results]
     reranked = reranker.rerank(q, docs, top_k=top_k)
     contexts = [r.text for r in reranked] if reranked else [r.text for r in results[:3]]
 
-    if OPENAI_API_KEY and contexts:
+    client = get_llm_client()
+    if client and contexts:
         try:
-            from openai import OpenAI
-            client = OpenAI()
             ctx = "\n\n".join(contexts)
             resp = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=LLM_MODEL,
                 messages=[
                     {"role": "system", "content": "Trả lời CHỈ dựa trên context. Nếu không có → nói 'Không tìm thấy.'"},
                     {"role": "user",   "content": f"Context:\n{ctx}\n\nCâu hỏi: {q}"},
