@@ -7,7 +7,8 @@ from dataclasses import dataclass
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import (QDRANT_HOST, QDRANT_PORT, COLLECTION_NAME, EMBEDDING_MODEL,
-                    EMBEDDING_DIM, BM25_TOP_K, DENSE_TOP_K, HYBRID_TOP_K)
+                    EMBEDDING_DIM, BM25_TOP_K, DENSE_TOP_K, HYBRID_TOP_K,
+                    QDRANT_MODE, QDRANT_LOCAL_PATH)
 
 
 @dataclass
@@ -81,7 +82,15 @@ class BM25Search:
 class DenseSearch:
     def __init__(self):
         from qdrant_client import QdrantClient
-        self.client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+        if QDRANT_MODE == "local":
+            os.makedirs(QDRANT_LOCAL_PATH, exist_ok=True)
+            self.client = QdrantClient(path=QDRANT_LOCAL_PATH)
+        elif QDRANT_MODE == "server":
+            self.client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+        else:
+            raise ValueError(
+                f"Unsupported QDRANT_MODE={QDRANT_MODE!r}; valid values are 'local' and 'server'."
+            )
         self._encoder = None
 
     def _get_encoder(self):

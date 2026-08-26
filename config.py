@@ -41,6 +41,12 @@ QDRANT_HOST = "localhost"
 QDRANT_PORT = 6333
 COLLECTION_NAME = "lab24_production"
 NAIVE_COLLECTION = "lab24_naive"
+QDRANT_MODE = os.getenv("QDRANT_MODE", "local").strip().lower()
+RUNTIME_DIR = os.path.join(os.path.dirname(__file__), "runtime")
+QDRANT_LOCAL_PATH = os.getenv(
+    "QDRANT_LOCAL_PATH",
+    os.path.join(RUNTIME_DIR, "qdrant"),
+)
 
 # --- Embedding (same as Day 18) ---
 EMBEDDING_MODEL = "BAAI/bge-m3"
