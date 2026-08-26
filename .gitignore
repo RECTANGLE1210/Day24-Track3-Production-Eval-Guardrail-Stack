@@ -8,3 +8,6 @@ venv/
 runtime/
 reports/*.json
 !reports/.gitkeep
+!reports/ragas_50q.json
+!reports/judge_results.json
+!reports/guard_results.json

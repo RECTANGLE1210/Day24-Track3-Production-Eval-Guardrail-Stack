@@ -1,0 +1,300 @@
+{
+  "judge_model": "openai/gpt-4o-mini",
+  "pairwise_count": 6,
+  "pairwise_results": [
+    {
+      "question_id": 1,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày khi kết hôn?",
+      "winner": "tie",
+      "reasoning": "Both answers provide the same information regarding the number of days off for employees getting married.",
+      "scores": {
+        "A": 1.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 5,
+      "question": "Muốn mua thiết bị trị giá 55 triệu cần ai phê duyệt?",
+      "winner": "B",
+      "reasoning": "Answer B provides a specific threshold for approval, indicating that purchases over 50 million VNĐ require the CEO's approval, which is more accurate than Answer A.",
+      "scores": {
+        "A": 0.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 12,
+      "question": "Thưởng Tết tối thiểu cho nhân viên chính thức có từ 6 tháng trở lên là bao nhiêu?",
+      "winner": "B",
+      "reasoning": "Answer B provides a complete and accurate response, including details about employees with less than 6 months of service, while Answer A is less complete.",
+      "scores": {
+        "A": 0.5,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 29,
+      "question": "Nhân viên tạm ứng 8 triệu, chưa thanh toán sau 30 ngày. Ai phê duyệt và phí phạt là bao nhiêu?",
+      "winner": "B",
+      "reasoning": "Answer B provides a more detailed explanation of the approval process and calculates the penalty accurately based on the duration of the delay.",
+      "scores": {
+        "A": 0.5,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 41,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày phép năm?",
+      "winner": "B",
+      "reasoning": "Answer B provides the most current information regarding the number of vacation days, including details about the policy changes and additional days based on seniority.",
+      "scores": {
+        "A": 0.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 46,
+      "question": "Nhân viên thử việc có được nghỉ phép năm không?",
+      "winner": "tie",
+      "reasoning": "Both answers provide the same information regarding the lack of annual leave for probationary employees, with Answer B being slightly more detailed but not significantly different in content.",
+      "scores": {
+        "A": 0.8,
+        "B": 0.8
+      }
+    }
+  ],
+  "swap_results": [
+    {
+      "question_id": 1,
+      "winner_pass1": "tie",
+      "winner_pass2": "tie",
+      "final_winner": "tie",
+      "position_consistent": true,
+      "reasoning_pass1": "Both answers provide the same information regarding the number of days off for employees getting married.",
+      "reasoning_pass2": "Both answers provide the same information regarding the number of days off for employees getting married, with Answer A including additional detail about the leave not being deducted from annual leave.",
+      "scores_pass1": {
+        "A": 1.0,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 1.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 5,
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "position_consistent": true,
+      "reasoning_pass1": "Answer B provides a specific threshold for approval, indicating that purchases over 50 million VNĐ require the CEO's approval, which is more accurate than Answer A.",
+      "reasoning_pass2": "Answer A correctly identifies that orders over 50 million VNĐ require approval from the CEO, which applies to the 55 million VNĐ device purchase. Answer B is incorrect as it suggests only departmental director approval.",
+      "scores_pass1": {
+        "A": 0.0,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 12,
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "position_consistent": true,
+      "reasoning_pass1": "Answer B provides a complete and accurate response, including details about employees with less than 6 months of service, while Answer A is less complete.",
+      "reasoning_pass2": "Answer A provides a complete explanation regarding the minimum Tết bonus for employees with 6 months or more of service, including details about pro-rata for those with less than 6 months, while Answer B lacks this context.",
+      "scores_pass1": {
+        "A": 0.5,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 29,
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "position_consistent": true,
+      "reasoning_pass1": "Answer B provides a more detailed explanation of the approval process and calculates the penalty accurately based on the duration of the delay.",
+      "reasoning_pass2": "Answer A provides a complete and accurate breakdown of the approval process and the penalty calculation, while Answer B lacks detail on the approval process and the specific penalty amount.",
+      "scores_pass1": {
+        "A": 0.5,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.5,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 41,
+      "winner_pass1": "B",
+      "winner_pass2": "B",
+      "final_winner": "B",
+      "position_consistent": true,
+      "reasoning_pass1": "Answer B provides the most current information regarding the number of vacation days, including details about the policy changes and additional days based on seniority.",
+      "reasoning_pass2": "Answer A provides the current policy for 2024, which is more accurate and complete than Answer B, which only mentions the outdated policy of 12 days.",
+      "scores_pass1": {
+        "A": 0.0,
+        "B": 1.0
+      },
+      "scores_pass2": {
+        "A": 0.0,
+        "B": 1.0
+      }
+    },
+    {
+      "question_id": 46,
+      "winner_pass1": "tie",
+      "winner_pass2": "tie",
+      "final_winner": "tie",
+      "position_consistent": true,
+      "reasoning_pass1": "Both answers provide the same information regarding the lack of annual leave for probationary employees, with Answer B being slightly more detailed but not significantly different in content.",
+      "reasoning_pass2": "Both answers provide the same information regarding the lack of annual leave for probationary employees and the requirement to request unpaid leave.",
+      "scores_pass1": {
+        "A": 0.8,
+        "B": 0.8
+      },
+      "scores_pass2": {
+        "A": 1.0,
+        "B": 1.0
+      }
+    }
+  ],
+  "human_comparison": [
+    {
+      "question_id": 1,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày khi kết hôn?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate answer correctly states that employees are entitled to 3 days of paid leave when getting married, which aligns with the policy reference."
+    },
+    {
+      "question_id": 5,
+      "question": "Muốn mua thiết bị trị giá 55 triệu cần ai phê duyệt?",
+      "human_label": 0,
+      "judge_label": 0,
+      "agree": true,
+      "judge_score": 0.0,
+      "judge_reasoning": "The candidate answer incorrectly states that the department director can approve the purchase, while the policy specifies that only the CEO can approve orders over 50,000,000 VNĐ."
+    },
+    {
+      "question_id": 12,
+      "question": "Thưởng Tết tối thiểu cho nhân viên chính thức có từ 6 tháng trở lên là bao nhiêu?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate answer correctly states that employees with 6 months or more of service receive a minimum of 1 month's salary as a Tet bonus, which aligns with the policy reference."
+    },
+    {
+      "question_id": 21,
+      "question": "Một nhân viên Senior có 9 năm thâm niên được nghỉ bao nhiêu ngày phép năm và lương trong khoảng nào?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate answer correctly states the number of vacation days and the salary range for a Senior employee, matching the policy reference."
+    },
+    {
+      "question_id": 23,
+      "question": "Nhân viên được tài trợ khóa học 25 triệu, nghỉ việc sau 8 tháng. Phải hoàn trả bao nhiêu?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate answer correctly states that the employee must repay the full amount of 25 million due to not fulfilling the one-year commitment after the training course."
+    },
+    {
+      "question_id": 29,
+      "question": "Nhân viên tạm ứng 8 triệu, chưa thanh toán sau 30 ngày. Ai phê duyệt và phí phạt là bao nhiêu?",
+      "human_label": 0,
+      "judge_label": 0,
+      "agree": true,
+      "judge_score": 0.0,
+      "judge_reasoning": "The candidate answer incorrectly states that only the Trưởng phòng approves the advance, while the policy specifies that both the Trưởng phòng and Kế toán trưởng must approve. Additionally, the calculation of the penalty is incomplete and does not account for the 15-day threshold mentioned in the policy."
+    },
+    {
+      "question_id": 33,
+      "question": "Nhân viên Manager có thâm niên 12 năm: tổng phụ cấp hàng tháng và số ngày phép năm?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate correctly states the monthly allowance and the total number of leave days, aligning with the policy reference."
+    },
+    {
+      "question_id": 41,
+      "question": "Nhân viên được nghỉ bao nhiêu ngày phép năm?",
+      "human_label": 0,
+      "judge_label": 0,
+      "agree": true,
+      "judge_score": 0.0,
+      "judge_reasoning": "The candidate answer states that employees are entitled to 12 days of leave per year, which is outdated information. The current policy for 2024 states that employees are entitled to 15 days of basic leave, plus an additional day for every three years of service, making the candidate's answer materially incorrect."
+    },
+    {
+      "question_id": 46,
+      "question": "Nhân viên thử việc có được nghỉ phép năm không?",
+      "human_label": 1,
+      "judge_label": 1,
+      "agree": true,
+      "judge_score": 1.0,
+      "judge_reasoning": "The candidate answer correctly states that probationary employees do not receive annual leave and must request unpaid leave if needed, which aligns with the policy reference."
+    },
+    {
+      "question_id": 50,
+      "question": "Nhân viên Manager có thể dùng VPN cá nhân (NordVPN) khi WFH không?",
+      "human_label": 0,
+      "judge_label": 0,
+      "agree": true,
+      "judge_score": 0.0,
+      "judge_reasoning": "The candidate answer contradicts the HR policy which explicitly prohibits the use of personal VPNs like NordVPN while working from home."
+    }
+  ],
+  "human_labels": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "judge_labels": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "cohen_kappa": 1.0,
+  "kappa_interpretation": "almost perfect",
+  "bias_report": {
+    "total_judged": 6,
+    "position_bias_rate": 0.0,
+    "position_bias_count": 0,
+    "verbosity_bias": 1.0,
+    "verbosity_details": {
+      "a_wins_a_longer": 0,
+      "b_wins_b_longer": 4,
+      "total_decisive": 4
+    },
+    "interpretation": "Position bias is low (0.000); verbosity correlation proxy is 1.000. Verbosity is a correlation signal, not evidence that length caused the winner."
+  }
+}
