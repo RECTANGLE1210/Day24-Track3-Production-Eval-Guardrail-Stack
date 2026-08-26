@@ -1,7 +1,7 @@
 # CI/CD Blueprint: RAG Eval + Guardrail Stack
 
-**Sinh viên:** [Họ Tên]  
-**Ngày:** [Ngày làm lab]
+**Sinh viên:** Chưa cung cấp<br>
+**Ngày:** 26/08/2026
 
 ---
 
@@ -10,90 +10,75 @@
 ```
 User Input
     │
-    ▼ (~?ms P95)
+    ▼ (Presidio P95 38.47ms)
 [Presidio PII Scan]
     │ block if: VN_CCCD / VN_PHONE / EMAIL detected
-    │ action:   return 400 + "PII detected in query"
-    ▼ (~?ms P95)
+    ▼ (NeMo input P95 2596.40ms)
 [NeMo Input Rail]
     │ block if: off-topic / jailbreak / prompt injection
-    │ action:   return 503 + refuse message
     ▼
 [RAG Pipeline (Day 18)]
     │ M1 Chunk → M2 Search → M3 Rerank → GPT-4o-mini
     ▼
 [NeMo Output Rail]
-    │ flag if:  PII in response / sensitive content
-    │ action:   replace with safe response
+    │ flag if: PII or sensitive content is returned
     ▼
 User Response
 ```
 
----
-
 ## Latency Budget
 
-*(Điền từ kết quả Task 12 — measure_p95_latency())*
-
 | Layer | P50 (ms) | P95 (ms) | P99 (ms) | Budget |
-|---|---|---|---|---|
-| Presidio PII | ? | ? | ? | <10ms |
-| NeMo Input Rail | ? | ? | ? | <300ms |
-| RAG Pipeline | ? | ? | ? | <2000ms |
-| NeMo Output Rail | ? | ? | ? | <300ms |
-| **Total Guard** | ? | **?** | ? | **<500ms** |
+|---|---:|---:|---:|---:|
+| Presidio PII | 22.02 | 38.47 | 38.47 | <10ms |
+| NeMo Input Rail | 1177.83 | 2596.40 | 2596.40 | <300ms |
+| RAG Pipeline | N/A | N/A | N/A | outside Task 12 measurement |
+| NeMo Output Rail | N/A | N/A | N/A | not measured by Task 12 |
+| **Total Guard** | **1204.51** | **2634.87** | **2634.87** | **<500ms** |
 
-**Budget OK?** [ ] Yes / [ ] No  
-**Comment:** [Nếu vượt budget, layer nào là bottleneck và cách tối ưu?]
+**Budget OK?** No<br>
+The total is measured as Presidio plus NeMo input; RAG and output latency are not claimed because Task 12 does not measure them.
 
----
-
-## CI/CD Gates (phải pass trước khi merge to main)
+## CI/CD Gates
 
 ```yaml
-# .github/workflows/rag_eval.yml
 - name: RAGAS Quality Gate
   run: python src/phase_a_ragas.py
-  env:
-    MIN_FAITHFULNESS: 0.75
-    MIN_AVG_SCORE: 0.65
-
+  # weighted avg >= 0.65; weighted faithfulness >= 0.75
 - name: Guardrail Gate
-  run: pytest tests/test_phase_c.py -k "test_adversarial_suite_pass_rate"
-  # phải ≥ 15/20 (75%)
-
+  run: python src/phase_c_guard.py
+  # minimum >= 15/20; bonus target >= 18/20
 - name: Latency Gate
   run: python -c "from src.phase_c_guard import measure_p95_latency; ..."
-  # P95 total < 500ms
+  # measured P95 total < 500ms
 ```
 
----
+Observed: RAGAS average PASS, weighted faithfulness FAIL, adversarial minimum PASS, bonus PASS, latency FAIL.
 
-## Monitoring Dashboard (production)
+## Monitoring Dashboard
 
 | Metric | Alert Threshold | Action |
 |---|---|---|
-| RAGAS faithfulness (daily sample) | < 0.70 | Page on-call |
+| RAGAS faithfulness | < 0.70 | Page on-call |
 | Adversarial block rate | < 80% | Review new attack patterns |
-| Guard P95 latency | > 600ms | Scale NeMo model |
+| Guard P95 latency | > 600ms | Scale or optimize NeMo |
 | PII detected count | spike >10/hour | Security alert |
-
----
 
 ## Kết quả thực tế từ Lab
 
 | | Kết quả |
 |---|---|
-| RAGAS avg_score (50q) | ? |
-| Worst metric | ? |
-| Dominant failure distribution | ? |
-| Cohen's κ | ? |
-| Adversarial pass rate | ? / 20 |
-| Guard P95 latency | ? ms |
-
----
+| RAGAS avg_score (50q) | 0.76 |
+| Worst metric | faithfulness |
+| Dominant failure distribution | adversarial |
+| Cohen's κ | 1.00 |
+| Adversarial pass rate | 20 / 20 |
+| Guard P95 latency | 2634.87 ms |
 
 ## Nhận xét & Cải tiến
 
-> [Viết 3-5 câu về: điều gì hoạt động tốt, điều gì cần cải thiện,
->  nếu deploy production thực sự bạn sẽ thay đổi gì trong stack này?]
+- Phase A có điểm RAGAS trung bình có trọng số 0.76; phân bố yếu nhất là adversarial và metric lỗi nổi bật là faithfulness.
+- Phase B đạt Cohen's κ = 1.00, nhưng verbosity bias quan sát được là 1.00 nên chỉ nên xem đây là tín hiệu tương quan.
+- Phase C chặn 20/20 adversarial cases; failed IDs được giữ nguyên trong guard report để review.
+- Guard P95 thực tế là 2634.87 ms; nếu vượt ngân sách 500 ms thì NeMo là layer cần ưu tiên tối ưu hoặc scale.
+- Judge và adversarial suite nên là tín hiệu kiểm soát bổ sung, không phải nguồn sự thật duy nhất.

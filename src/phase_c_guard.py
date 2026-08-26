@@ -169,11 +169,15 @@ async def check_input_rail(text: str, rails=None) -> dict:
         messages=[{"role": "user", "content": text}],
         options={"rails": ["input"]},
     )
-    response_text = _extract_response_text(response)
-    blocked = _contains_refusal(response_text)
+    response_text = _extract_response_text(response).strip()
+    if not response_text:
+        raise RuntimeError(
+            "NeMo input rail returned an empty response; refusing to treat it as allowed."
+        )
+    allowed = response_text == text.strip()
     return {
-        "allowed": not blocked,
-        "blocked_reason": "nemo_input_rail" if blocked else None,
+        "allowed": allowed,
+        "blocked_reason": None if allowed else "nemo_input_rail",
         "response": response_text,
     }
     # if rails is None:
@@ -213,16 +217,16 @@ async def check_output_rail(question: str, answer: str, rails=None) -> dict:
             {"role": "user", "content": question},
             {"role": "assistant", "content": answer},
         ],
-        options={"rails": ["input", "output"]},
+        options={"rails": ["output"]},
     )
-    response_text = _extract_response_text(response)
-    flagged = _contains_refusal(response_text) or (
-        bool(response_text) and response_text.strip() != answer.strip()
-    )
+    response_text = _extract_response_text(response).strip()
+    if not response_text:
+        raise RuntimeError("NeMo output rail returned an empty response.")
+    safe = response_text == answer.strip()
     return {
-        "safe": not flagged,
-        "flagged_reason": "nemo_output_rail" if flagged else None,
-        "final_answer": response_text if flagged else answer,
+        "safe": safe,
+        "flagged_reason": None if safe else "nemo_output_rail",
+        "final_answer": answer if safe else response_text,
     }
     # if rails is None:
     #     rails = setup_nemo_rails()

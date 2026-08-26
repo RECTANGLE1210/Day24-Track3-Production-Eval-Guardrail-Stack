@@ -5,6 +5,7 @@ models:
     api_key_env_var: OPENROUTER_API_KEY
     parameters:
       base_url: https://openrouter.ai/api/v1
+      temperature: 0
 
 instructions:
   - type: general
@@ -16,13 +17,12 @@ instructions:
 
 rails:
   input:
+    parallel: false
     flows:
-      - check jailbreak
-      - check off topic
-      - check pii request
-      - check pii request in english
+      - self check input
   output:
+    parallel: false
     flows:
-      - check sensitive output
+      - self check output
 
 # Colang dialogue flows are defined in rails.co
